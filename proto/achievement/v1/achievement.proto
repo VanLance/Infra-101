@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package achievement.v1;
+
+option go_package = "example.com/achievement-engine/gen/achievement/v1;achievementv1";
+
+message RecordActionRequest {
+  string user_id = 1;
+  string action = 2;
+}
+
+message RecordActionResponse {
+  repeated string newly_unlocked_achievements = 1;
+}
+
+message GetAchievementsRequest {
+  string user_id = 1;
+}
+
+message GetAchievementsResponse {
+  repeated string achievements = 1;
+}
+
+service AchievementService {
+  rpc RecordAction(RecordActionRequest) returns (RecordActionResponse);
+  rpc GetAchievements(GetAchievementsRequest) returns (GetAchievementsResponse);
+}
